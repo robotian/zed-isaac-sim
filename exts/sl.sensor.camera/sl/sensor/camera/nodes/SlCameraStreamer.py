@@ -283,8 +283,11 @@ class SlCameraStreamer:
                     db.internal_state.start_time = int(time.time_ns())
                     carb.log_info(f"{db.internal_state.camera_prim_name} - Setting initial streaming time stamp to: {db.internal_state.start_time}")
 
-                ts = int(db.internal_state.start_time + current_time * 1000000000)
-                
+                # original timestamp... it uses the system time when the simulation starts as the initial time.                 
+                # ts = int(db.internal_state.start_time + current_time * 1000000000)
+
+                # just simple simulation time as the timestamp
+                ts = int(current_time * 1000000000)
                 # override with system time
                 if db.internal_state.override_simulation_time:
                     ts = int(time.time_ns())
